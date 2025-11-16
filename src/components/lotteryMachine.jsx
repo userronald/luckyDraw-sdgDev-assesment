@@ -210,21 +210,21 @@ export default function LuckyDraw() {
                 </svg>
 
                 <h1
-                  className="tracking-widest uppercase text-[28px] md:text-5xl font-extrabold"
+                  className="tracking-widest uppercase text-[62px] md:text-5xl font-extrabold"
                   style={{
                     letterSpacing: "6px",
                     color: "transparent",
                     WebkitTextStroke: "1px rgba(120,250,255,0.9)",
                     textShadow:
                       "0 0 10px rgba(59,240,255,0.85), 0 0 28px rgba(90,30,200,0.45), 0 4px 24px rgba(0,0,0,0.6)",
-                    fontFamily:
-                      "ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue'",
+                    fontFamily: "RapidoRacersTwo",
                   }}
                 >
                   <span
                     style={{
                       color: "#bffcff",
                       textShadow: "0 0 32px rgba(59,240,255,0.9)",
+                      fontSize: "74px",
                     }}
                   >
                     CONGRATULATION
@@ -272,7 +272,7 @@ export default function LuckyDraw() {
       /* Import Rapido Racers font */
       @font-face {
         font-family: 'RapidoRacers';
-        src: url('/fonts/RapidoRacers.ttf') format('truetype');
+        src: url('/fonts/RapidoRacers-nR8J0.otf') format('truetype');
         font-weight: normal;
         font-style: normal;
       }
@@ -289,24 +289,15 @@ export default function LuckyDraw() {
       @keyframes prizePulse {
         0% {
           color: #ffffff;
-          text-shadow:
-            0 0 10px rgba(255,255,255,0.9),
-            0 0 22px rgba(200,200,255,0.7),
-            0 0 38px rgba(160,160,255,0.5);
+     
         }
         50% {
           color: #ff1e1e;
-          text-shadow:
-            0 0 10px rgba(255,60,60,0.9),
-            0 0 25px rgba(255,20,20,0.85),
-            0 0 45px rgba(255,0,0,0.65);
+         
         }
         100% {
           color: #ffffff;
-          text-shadow:
-            0 0 10px rgba(255,255,255,0.9),
-            0 0 22px rgba(200,200,255,0.7),
-            0 0 38px rgba(160,160,255,0.5);
+     
         }
       }
     `}
@@ -318,7 +309,7 @@ export default function LuckyDraw() {
 
           {/* Pillars row */}
           <div className="w-full flex justify-center items-end">
-            <div className="w-full max-w-4xl">
+            <div className="w-full max-w-6xl">
               <div className="flex justify-between gap-4 md:gap-6 px-4 md:px-8">
                 {columns.map((num, idx) => {
                   // use isSpinning and isWin for classes as per your snippet
@@ -331,8 +322,8 @@ export default function LuckyDraw() {
                       <div
                         className={`
                           relative max-w-[86px] md:max-w-[110px] aspect-[0.7/1] overflow-visible transform-gpu transition-all duration-400
-                          w-24 h-40 rounded-xl border-2 border-[#e100ff] 
-                          bg-[rgba(40,0,70,0.45)] backdrop-blur-xl 
+                          w-28 h-44 rounded-xl border border-[#e100ff] 
+                          bg-[rgba(40,0,70,0.2)] backdrop-blur-xl 
                           flex items-center justify-center text-5xl font-bold
                           text-[#7df3ff] shadow-[0_0_35px_#e100ff]
                           ${isSpinning ? "animate-spinSlow opacity-60" : ""}
@@ -385,11 +376,18 @@ export default function LuckyDraw() {
                       {/* base stage ellipse */}
                       <div className="mt-3 w-full flex justify-center">
                         <div
-                          className={`w-28 md:w-36 h-6 rounded-full relative`}
+                          className="w-32 md:w-40 h-12 relative"
                           style={{
                             background:
-                              "radial-gradient(circle at 50% 20%, rgba(150,110,255,0.16), rgba(30,8,50,0.06))",
-                            boxShadow: "0 8px 18px rgba(10,5,20,0.5)",
+                              "linear-gradient(to bottom, #3a0ca3, #2d0a6b 70%, #1c063f)",
+                            border: "2px solid #a020f0",
+                            borderRadius: "18px 18px 6px 6px",
+                            boxShadow: `
+      0 8px 20px rgba(20, 5, 50, 0.6),          /* Outer Drop Shadow */
+      inset 0 3px 6px rgba(255, 255, 255, 0.15), /* Top Inner Highlight */
+      inset 0 -3px 6px rgba(0, 0, 0, 0.45),      /* Bottom Inner Shadow */
+      inset 0 -10px 18px rgba(160, 32, 240, 0.25) /* Purple Glow Plate */
+    `,
                           }}
                         >
                           <div
@@ -439,27 +437,23 @@ export default function LuckyDraw() {
         </div>
 
         {/* Panel base and Spin button area */}
-        <div className="relative mt-6">
-          {/* Panel base SVG */}
+        <div className="relative mt-24 w-full flex justify-center items-center">
+          {/* 🔮 NEW DARK PURPLE SIDE PANELS */}
+          <div className="absolute top-1/2 -translate-y-1/2 w-full px-8">
+            <div
+              className="w-full h-20 rounded-2xl"
+              style={{
+                background:
+                  "linear-gradient(90deg, rgba(40,0,70,0.85), rgba(80,0,120,0.92), rgba(40,0,70,0.85))",
+                boxShadow:
+                  "0 0 40px rgba(140,0,255,0.35), inset 0 0 15px rgba(90,0,160,0.45)",
+                border: "2px solid rgba(150,0,255,0.55)",
+              }}
+            ></div>
+          </div>
 
-          {/* Left & right semi-circular neon glows */}
-          <div
-            className="absolute left-6 bottom-6 w-32 h-16 rounded-full blur-2xl opacity-80"
-            style={{
-              background:
-                "radial-gradient(circle at 10% 50%, rgba(255,230,80,0.9), rgba(120,40,255,0.1))",
-            }}
-          />
-          <div
-            className="absolute right-6 bottom-6 w-36 h-16 rounded-full blur-2xl opacity-80"
-            style={{
-              background:
-                "radial-gradient(circle at 80% 50%, rgba(255,230,80,0.9), rgba(0,240,255,0.06))",
-            }}
-          />
-
-          {/* Spin button centered */}
-          <div className="absolute left-1/2 -translate-x-1/2 -top-12 z-50">
+          {/* SPIN BUTTON */}
+          <div className="absolute left-1/2 -translate-x-1/2 -top-10 z-50">
             <button
               onClick={spin}
               disabled={isSpinning}
@@ -483,7 +477,7 @@ export default function LuckyDraw() {
                   zIndex: 0,
                 }}
               />
-              {/* Button text with strong neon and blue shadow */}
+
               <span
                 className="relative z-10 font-extrabold uppercase tracking-widest"
                 style={{
@@ -499,8 +493,6 @@ export default function LuckyDraw() {
               </span>
             </button>
           </div>
-
-          {/* small footer / credits - optional */}
         </div>
       </div>
 
