@@ -1,14 +1,5 @@
 import React, { useState, useRef } from "react";
 
-/**
- * LuckyDraw.jsx
- * Single-file React + Tailwind component for a neon arcade Lucky Draw UI.
- *
- * Usage:
- *   import LuckyDraw from "./LuckyDraw";
- *   <LuckyDraw />
- */
-
 export default function LuckyDraw() {
   // kept a ref for cleanup if needed later (not required but safe)
   const spinTimeoutRef = useRef(null);
@@ -437,18 +428,12 @@ export default function LuckyDraw() {
         </div>
 
         {/* Panel base and Spin button area */}
-        <div className="relative mt-24 w-full flex justify-center items-center">
-          {/* 🔮 NEW DARK PURPLE SIDE PANELS */}
+        <div className="relative  w-full flex justify-center items-center">
+          {/*  NEW DARK PURPLE SIDE PANELS */}
           <div className="absolute top-1/2 -translate-y-1/2 w-full px-8">
             <div
-              className="w-full h-20 rounded-2xl"
-              style={{
-                background:
-                  "linear-gradient(90deg, rgba(40,0,70,0.85), rgba(80,0,120,0.92), rgba(40,0,70,0.85))",
-                boxShadow:
-                  "0 0 40px rgba(140,0,255,0.35), inset 0 0 15px rgba(90,0,160,0.45)",
-                border: "2px solid rgba(150,0,255,0.55)",
-              }}
+              className="w-full h-32 rounded-2xl"
+             
             ></div>
           </div>
 
@@ -462,8 +447,8 @@ export default function LuckyDraw() {
               style={{
                 boxShadow:
                   "0 2px 24px 8px #4aefff38, 0 4px 32px #6a00ff88, inset 0 2px 10px #ab4fff44, 0 1px 0 #39f5ff",
-                background: "linear-gradient(180deg,#2b0b45 65%,#1c062d 100%)",
-                border: "3px solid #73f7ff",
+                background: "linear-gradient(180deg,#CC5BEB 65%,#CF27F5 100%)",
+                border: "2px solid #7B00A1",
                 minWidth: "230px",
                 minHeight: "68px",
               }}
@@ -481,11 +466,10 @@ export default function LuckyDraw() {
               <span
                 className="relative z-10 font-extrabold uppercase tracking-widest"
                 style={{
-                  color: "#39f5ff",
+                  color: "#F5EB27",
                   fontSize: "1.9rem",
                   letterSpacing: "0.14em",
-                  textShadow:
-                    "0 0 16px #3bfcff, 0 1.5px 0 #fff, 0 0 24px #7afff9, 0 4px 12px #32004a",
+
                   filter: "brightness(1.16)",
                 }}
               >
