@@ -13,6 +13,10 @@ export default function LuckyDraw() {
   // fixed winning number (single digit as in your logic)
   const WIN_NUMBER = 4;
 
+  //spin button images
+  const BTN_IDLE="/images/btn-1.png";
+  const BTN_ACTIVE = "/images/btn-2.png";
+
   // random fail messages
   const failMessages = [
     "Oops! Try once more!",
@@ -82,6 +86,10 @@ export default function LuckyDraw() {
       if (spinTimeoutRef.current) clearTimeout(spinTimeoutRef.current);
     };
   }, []);
+
+
+  {/* U-shape curve offsets for each column */}
+  const curveOffsets = [4, 12, 25, 25, 12, 4];
 
   // ---------- MARKUP (UI unchanged, only dynamic bits replaced) ----------
   return (
@@ -302,18 +310,24 @@ export default function LuckyDraw() {
           <div className="w-full flex justify-center items-end">
             <div className="w-full max-w-6xl">
               <div className="flex justify-between gap-4 md:gap-6 px-4 md:px-8">
+                
                 {columns.map((num, idx) => {
                   // use isSpinning and isWin for classes as per your snippet
+                  
                   return (
                     <div
                       key={idx}
                       className="flex-1 flex flex-col items-center"
+                      style={{
+                        transform: `translateY(${curveOffsets[idx]}px)`,
+                        transition: "transform 0.3s ease-out",
+                      }}
                     >
                       {/* pillar */}
                       <div
                         className={`
-                          relative max-w-[86px] md:max-w-[110px] aspect-[0.7/1] overflow-visible transform-gpu transition-all duration-400
-                          w-28 h-44 rounded-xl border border-[#e100ff] 
+                          relative max-w-[86px] md:max-w-[110px] overflow-visible transform-gpu transition-all duration-400
+                          w-28 h-44  rounded-xl border border-[#e100ff] 
                           bg-[rgba(40,0,70,0.2)] backdrop-blur-xl 
                           flex items-center justify-center text-5xl font-bold
                           text-[#7df3ff] shadow-[0_0_35px_#e100ff]
@@ -365,27 +379,20 @@ export default function LuckyDraw() {
                       </div>
 
                       {/* base stage ellipse */}
-                      <div className="mt-3 w-full flex justify-center">
-                        <div
-                          className="w-32 md:w-40 h-12 relative"
-                          style={{
-                            background:
-                              "linear-gradient(to bottom, #3a0ca3, #2d0a6b 70%, #1c063f)",
-                            border: "2px solid #a020f0",
-                            borderRadius: "18px 18px 6px 6px",
-                            boxShadow: `
-      0 8px 20px rgba(20, 5, 50, 0.6),          /* Outer Drop Shadow */
-      inset 0 3px 6px rgba(255, 255, 255, 0.15), /* Top Inner Highlight */
-      inset 0 -3px 6px rgba(0, 0, 0, 0.45),      /* Bottom Inner Shadow */
-      inset 0 -10px 18px rgba(160, 32, 240, 0.25) /* Purple Glow Plate */
-    `,
-                          }}
-                        >
+                      <div className="w-full flex justify-center -mt-6 md:-mt-10 relative z-0">
+                        <div className="w-32 md:w-40 relative">
+                          <img
+                            src="/images/stage.png"
+                            alt="stage"
+                            className="w-full h-auto select-none pointer-events-none"
+                          />
+
+                          {/* Glow overlay */}
                           <div
-                            className="absolute inset-0 rounded-full opacity-30 blur-sm"
+                            className="absolute inset-0 rounded-full opacity-40 blur-md"
                             style={{
                               background:
-                                "linear-gradient(90deg, rgba(0,255,200,0.06), rgba(120,60,255,0.07))",
+                                "linear-gradient(90deg, rgba(0,255,200,0.10), rgba(130,60,255,0.18))",
                             }}
                           />
                         </div>
@@ -420,7 +427,7 @@ export default function LuckyDraw() {
                   {/* show fail message OR hint text only when NOT a win.
                       When isWin === true we intentionally render an empty string
                       so the small red congratulation near result area does not appear. */}
-                  {!isWin ? message || "Press SPIN to try your luck" : ""}
+                  {!isWin ? message :""}
                 </span>
               </div>
             )}
@@ -428,55 +435,28 @@ export default function LuckyDraw() {
         </div>
 
         {/* Panel base and Spin button area */}
-        <div className="relative  w-full flex justify-center items-center">
-          {/*  NEW DARK PURPLE SIDE PANELS */}
-          <div className="absolute top-1/2 -translate-y-1/2 w-full px-8">
-            <div
-              className="w-full h-32 rounded-2xl"
-             
-            ></div>
-          </div>
+        {/* Panel base image */}
+        <div className="relative w-full flex justify-center items-center ">
+          <img
+            src="/images/base.png"
+            className="w-full max-w-8xl pointer-events-none select-none"
+            alt="panel"
+          />
 
-          {/* SPIN BUTTON */}
-          <div className="absolute left-1/2 -translate-x-1/2 -top-10 z-50">
-            <button
-              onClick={spin}
-              disabled={isSpinning}
-              aria-pressed={isSpinning}
-              className="relative select-none rounded-[22px] overflow-visible px-14 py-5 transition-all active:scale-95 border-none outline-none group"
-              style={{
-                boxShadow:
-                  "0 2px 24px 8px #4aefff38, 0 4px 32px #6a00ff88, inset 0 2px 10px #ab4fff44, 0 1px 0 #39f5ff",
-                background: "linear-gradient(180deg,#CC5BEB 65%,#CF27F5 100%)",
-                border: "2px solid #7B00A1",
-                minWidth: "230px",
-                minHeight: "68px",
-              }}
-            >
-              {/* Glowing outer ring */}
-              <div
-                className="absolute -inset-2 rounded-[22px] blur-lg opacity-80 pointer-events-none"
-                style={{
-                  background:
-                    "radial-gradient(circle,#76ffff33 40%,#5a33ff11 100%,transparent)",
-                  zIndex: 0,
-                }}
-              />
-
-              <span
-                className="relative z-10 font-extrabold uppercase tracking-widest"
-                style={{
-                  color: "#F5EB27",
-                  fontSize: "1.9rem",
-                  letterSpacing: "0.14em",
-
-                  filter: "brightness(1.16)",
-                }}
-              >
-                {isSpinning ? "SPINNING..." : "SPIN"}
-              </span>
-            </button>
-          </div>
+          {/* SPIN Image Button */}
+          <button
+            onClick={spin}
+            disabled={isSpinning}
+            className="absolute bottom-[14%] left-1/2 -translate-x-1/2 
+               active:scale-95 transition-all duration-150"
+            style={{ width: "260px" }}
+          >
+            <img
+              src={isSpinning ? BTN_ACTIVE : BTN_IDLE}
+              alt="spin button"
+              className="w-full h-auto select-none pointer-events-none"
+            />
+          </button>
         </div>
       </div>
 
