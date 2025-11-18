@@ -324,79 +324,57 @@ export default function LuckyDraw() {
                       }}
                     >
                       {/* pillar */}
-                      <div
-                        className={`
-                          relative max-w-[86px] md:max-w-[110px] overflow-visible transform-gpu transition-all duration-400
-                          w-28 h-44  rounded-xl border border-[#e100ff] 
-                          bg-[rgba(40,0,70,0.2)] backdrop-blur-xl 
-                          flex items-center justify-center text-5xl font-bold
-                          text-[#7df3ff] shadow-[0_0_35px_#e100ff]
-                          ${isSpinning ? "animate-spinSlow opacity-60" : ""}
-                          ${
-                            isWin && num === WIN_NUMBER
-                              ? "animate-glowWin scale-110"
-                              : ""
-                          }
-                        `}
-                        style={{
-                          filter: "drop-shadow(0 8px 22px rgba(20,10,40,0.22))",
-                          zIndex: 10,
-                        }}
-                      >
-                        {/* Glass pillar with inner gradient (kept) */}
-                        <div
-                          className="absolute inset-0 rounded-xl border border-transparent"
-                          style={{
-                            background:
-                              "linear-gradient(180deg, rgba(255,255,255,0.03), rgba(150,120,255,0.02))",
-                            boxShadow: "inset 0 -10px 30px rgba(10,5,20,0.2)",
-                          }}
-                        />
+                     {/* WRAPPER FOR COLUMN + STAGE */}
+<div className="flex flex-col items-center w-full relative">
 
-                        {/* displayed number */}
-                        <div className="relative z-20 h-full flex items-center justify-center">
-                          <div
-                            className="text-4xl md:text-6xl font-extrabold tracking-wide"
-                            style={{
-                              color: "#9fe8ff",
-                              textShadow: "0 0 14px rgba(0,180,220,0.28)",
-                            }}
-                          >
-                            {num}
-                          </div>
-                        </div>
+  {/* COLUMN BOX */}
+  <div
+    className={`
+      relative max-w-[86px] md:max-w-[110px] overflow-visible transform-gpu transition-all duration-400
+      w-28 h-44 rounded-xl border border-[#e100ff] 
+      bg-[rgba(40,0,70,0.2)] backdrop-blur-xl 
+      flex items-center justify-center text-5xl font-bold
+      text-[#7df3ff] shadow-[0_0_35px_#e100ff]
+      ${isSpinning ? "animate-spinSlow opacity-60" : ""}
+      ${isWin && num === WIN_NUMBER ? "animate-glowWin scale-110" : ""}
+    `}
+    style={{
+      filter: "drop-shadow(0 8px 22px rgba(20,10,40,0.22))",
+      zIndex: 10,
+    }}
+  >
+    {/* Your number code */}
+    <div className="relative z-20 h-full flex items-center justify-center">
+      <div
+        className="text-4xl md:text-6xl font-extrabold tracking-wide"
+        style={{
+          color: "#9fe8ff",
+          textShadow: "0 0 14px rgba(0,180,220,0.28)",
+        }}
+      >
+        {num}
+      </div>
+    </div>
+  </div>
 
-                        {/* scanline */}
-                        <div className="absolute inset-0 rounded-xl overflow-hidden pointer-events-none">
-                          <div
-                            className="h-[30%] w-full absolute top-[10%] left-0 opacity-10 animate-scanline"
-                            style={{
-                              background:
-                                "linear-gradient(90deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02), rgba(255,255,255,0.04))",
-                            }}
-                          />
-                        </div>
-                      </div>
+  {/* STAGE IMAGE — NOW INSIDE THE SAME WRAPPER */}
+  <div className="relative -mt-64">
+    <img
+      src="/images/stage.png"
+      alt="stage"
+      className="w-32 md:w-40 h-auto select-none pointer-events-none"
+    />
 
-                      {/* base stage ellipse */}
-                      <div className="w-full flex justify-center -mt-6 md:-mt-10 relative z-0">
-                        <div className="w-32 md:w-40 relative">
-                          <img
-                            src="/images/stage.png"
-                            alt="stage"
-                            className="w-full h-auto select-none pointer-events-none"
-                          />
+    <div
+      className="absolute inset-0 rounded-full opacity-40 blur-md"
+      style={{
+        background:
+          "linear-gradient(90deg, rgba(0,255,200,0.10), rgba(130,60,255,0.18))",
+      }}
+    />
+  </div>
+</div>
 
-                          {/* Glow overlay */}
-                          <div
-                            className="absolute inset-0 rounded-full opacity-40 blur-md"
-                            style={{
-                              background:
-                                "linear-gradient(90deg, rgba(0,255,200,0.10), rgba(130,60,255,0.18))",
-                            }}
-                          />
-                        </div>
-                      </div>
                     </div>
                   );
                 })}
