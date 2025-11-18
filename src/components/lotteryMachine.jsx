@@ -383,7 +383,7 @@ export default function LuckyDraw() {
           </div>
 
           {/* Result text + instructions */}
-          <div className="mt-8 text-center">
+          <div className="text-center">
             {isSpinning ? (
               <div className="text-sm md:text-base text-[#bdefff] tracking-wide">
                 Spinning... Good luck!
