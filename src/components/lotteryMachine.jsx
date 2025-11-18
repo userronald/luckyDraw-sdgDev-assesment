@@ -89,7 +89,7 @@ export default function LuckyDraw() {
 
 
   {/* U-shape curve offsets for each column */}
-  const curveOffsets = [4, 12, 25, 25, 12, 4];
+  const curveOffsets = [8, 12, 19, 19, 12, 8];
 
   // ---------- MARKUP (UI unchanged, only dynamic bits replaced) ----------
   return (
