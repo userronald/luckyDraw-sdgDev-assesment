@@ -361,29 +361,37 @@ export default function LuckyDraw() {
               <img
                 src="/images/vector.png"
                 alt="bg scale"
-                className="absolute top-70 left-1/2 -translate-x-1/2 
-               w-[95%] md:w-[84%] lg:w-[50%] 
+                className="absolute top-75 left-1/2 -translate-x-1/2 
+               w-[95%] md:w-[84%] lg:w-[77%] 
+               z-0 pointer-events-none select-none"
+              />
+
+              <img
+                src="/images/vector-2.png"
+                alt="bg scale"
+                className="absolute top-85 left-1/2 -translate-x-1/2 
+               w-[95%] md:w-[84%] lg:w-[30%] 
                z-0 pointer-events-none select-none"
               />
               <img
                 src="/images/vector-7.png"
                 alt="bg scale"
-                className="absolute top-75 left-1/2 -translate-x-1/2 
-               w-[120%] md:w-[120%] lg:w-[63%] 
-               z-0 pointer-events-none select-none"
-              />
-              <img
-                src="/images/vector-7.png"
-                alt="bg scale"
-                className="absolute top-75 left-1/2 -translate-x-1/2 
+                className="absolute top-80 left-1/2 -translate-x-1/2 
                w-[120%] md:w-[120%] lg:w-[65%] 
+               z-0 pointer-events-none select-none"
+              />
+              <img
+                src="/images/vector-7.png"
+                alt="bg scale"
+                className="absolute top-80 left-1/2 -translate-x-1/2 
+               w-[120%] md:w-[120%] lg:w-[68%] 
                z-0 pointer-events-none select-none"
               />
               <img
                 src="/images/vector-1.png"
                 alt="bg scale"
-                className="absolute top-75 left-1/2 -translate-x-1/2 
-               w-[95%] md:w-[84%] lg:w-[70%] 
+                className="absolute top-78 left-1/2 -translate-x-1/2 
+               w-[95%] md:w-[84%] lg:w-[60%] 
                z-0 pointer-events-none select-none"
               />
               <img
